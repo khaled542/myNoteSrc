@@ -1,0 +1,28 @@
+<nav class="navbar navbar-expand-lg ">
+    <div class="container-fluid">
+      <a class="navbar-brand" routerLink="/home"><i class="far fa-sticky-note"></i> my-note</a>
+      <button class="navbar-toggler navbar-dark" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon text-primary"  ></span>
+       
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li *ngIf="isLogined" class="nav-item">
+            <span class="nav-link wel" >welcome {{userName}}</span>
+          </li>
+          <li *ngIf="isLogined" class="nav-item">
+            <a class="nav-link" routerLink="/profile">Profile</a>
+          </li>
+          <li *ngIf="!isLogined" class="nav-item">
+            <a class="nav-link" routerLink="/sign-in">sign-in</a>
+          </li>
+          <li *ngIf="!isLogined" class="nav-item">
+            <a class="nav-link" routerLink="/sign-up">sign-up</a>
+          </li>
+          <li *ngIf="isLogined" class="nav-item">
+            <a class="nav-link" routerLink="/home" (click)="logOut()">sign-out</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>

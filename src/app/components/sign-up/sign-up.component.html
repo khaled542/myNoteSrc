@@ -1,0 +1,63 @@
+<div class="container d-flex justify-content-center align-items-center vh-100 ">
+    <div class="w-75 m-auto ">
+        <h3 *ngIf="!isSuccesse" class="text-danger text-center">this email is already registered</h3>
+        <form [formGroup]="signUpForm" (ngSubmit)="submitBtn()">
+            <div class="row">
+                <div class="col-md-6 my-1">
+                    <label class="">First Name</label>
+                    <input type="text" formControlName="first_name" class="form-control my-2">
+                    <div *ngIf="signUpForm.invalid && isSubmitted" class="errors">
+                        <p *ngIf="signUpForm.invalid && signUpForm.get('first_name')?.getError('required')" class="text-danger">this field is required</p>
+                        <p *ngIf="signUpForm.invalid && signUpForm.get('first_name')?.getError('minlength')" class="text-danger">min length is 3</p>
+                        <p *ngIf="signUpForm.invalid && signUpForm.get('first_name')?.getError('maxlength')" class="text-danger">max length is 10</p>
+                    </div>
+                </div>
+
+                <div class="col-md-6 my-1">
+                    <label class="">Last Name</label>
+                    <input type="text" formControlName="last_name" class="form-control my-2">
+                    <div *ngIf="signUpForm.invalid && isSubmitted" class="errors">
+                        <p *ngIf="signUpForm.invalid && signUpForm.get('last_name')?.getError('required')" class="text-danger">this field is required</p>
+                        <p *ngIf="signUpForm.invalid && signUpForm.get('last_name')?.getError('minlength')" class="text-danger">min length is 3</p>
+                        <p *ngIf="signUpForm.invalid && signUpForm.get('last_name')?.getError('maxlength')" class="text-danger">max length is 10</p>
+                    </div>
+                </div>
+
+                <div class="col-md-12 my-1">
+                    <label class="">age</label>
+                    <input type="number" formControlName="age" class="form-control my-2">
+                    <div *ngIf="signUpForm.invalid && isSubmitted" class="errors">
+                        <p *ngIf="signUpForm.invalid && signUpForm.get('age')?.getError('required')" class="text-danger">this field is required</p>
+                        <p *ngIf="signUpForm.invalid && signUpForm.get('age')?.getError('min')" class="text-danger">min age is 18</p>
+                        <p *ngIf="signUpForm.invalid && signUpForm.get('age')?.getError('max')" class="text-danger">max age is 40</p>
+                    </div>
+                </div>
+
+                <div class="col-md-12 my-1">
+                    <label class="">Email</label>
+                    <input type="email" formControlName="email" class="form-control my-2">
+                    <div *ngIf="signUpForm.invalid && isSubmitted" class="errors">
+                        <p *ngIf="signUpForm.invalid && signUpForm.get('email')?.getError('required')" class="text-danger">this field is required</p>
+                        <p *ngIf="signUpForm.invalid && signUpForm.get('email')?.getError('pattern')" class="text-danger">email format is not valid</p>
+                    </div>
+                </div>
+
+                <div class="col-md-12 my-1">
+                    <label class="">Password</label>
+                    <input type="password" formControlName="password" class="form-control my-2">
+                    <div *ngIf="signUpForm.invalid && isSubmitted" class="errors">
+                        <p *ngIf="signUpForm.invalid && signUpForm.get('password')?.getError('required')" class="text-danger">this field is required</p>
+                        <p *ngIf="signUpForm.invalid && signUpForm.get('password')?.getError('pattern')" class="text-danger">password format is not valid</p>
+                    </div>
+                </div>
+
+                <div class="col-md-12 my-3">
+                    <button type="submit" class="btn sub-btn w-100">
+                        <span *ngIf="!isLoading">register</span>
+                        <span *ngIf="isLoading">waiting........</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

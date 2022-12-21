@@ -1,0 +1,103 @@
+<section class="my-5 vh-100 " [ngClass]="{'d-flex justify-content-center align-items-center': isEmpty}">
+  <div *ngIf="isEmpty" class="container d-flex justify-content-center align-items-center">
+    <i class="fa-solid fa-square-plus fa-10x click" data-bs-toggle="modal" data-bs-target="#addNote"></i>
+  </div>
+  <div *ngIf="!isEmpty && isLoaded" class="container overflow-hidden">
+    <div class="head my-5 p-3 d-flex">
+      <div class="add ms-auto click" data-bs-toggle="modal" data-bs-target="#addNote">
+        <span><i class="fa-solid fa-circle-plus"></i> add new note</span>
+      </div>
+    </div>
+
+    <div class="notes text-break">
+      <div class="row gy-4">
+        <div *ngFor="let note of allNotes" class="col-sm-6 col-md-4 col-lg-3">
+          <div class="content d-flex flex-column">
+            <div class="note-body px-2">
+              <h3>{{note.title}}</h3>
+              <p class="">{{note.desc}}</p>
+            </div>
+            <div class="note-foot mt-auto w-100 ">
+              <i class="fa-regular fa-pen-to-square me-4 click" data-bs-toggle="modal" data-bs-target="#updateNote"
+                (click)="getNoteID(note._id);setUpdateForm()"></i>
+              <i class="fa-solid fa-trash-can click" data-bs-toggle="modal" data-bs-target="#deleteNote"
+                (click)="getNoteID(note._id)"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- //////////////////////////////////////////    add modal  ///////////////////////// -->
+
+<div class="modal fade" id="addNote" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form [formGroup]="addNoteForm" (ngSubmit)="addNote()">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add Note</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input formControlName="title" type="text" placeholder="title" class="form-control mb-3">
+          <textarea formControlName="desc" cols="30" rows="10" placeholder="description"
+            class="form-control"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Add</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+<!-- ///////////////////////////////////////////////////////////////////////////////////// -->
+
+<!-- //////////////////////////////////////////    delete modal  ///////////////////////// -->
+
+<div class="modal fade" id="deleteNote" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Note</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p>Are you sure that you need to delete this note ?</p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+        <button class="btn btn-danger" (click)="deleteNote()">Delete</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ///////////////////////////////////////////////////////////////////////////////////////// -->
+
+<!-- //////////////////////////////////////////    update modal  ///////////////////////// -->
+
+<div class="modal fade" id="updateNote" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <form [formGroup]="updateNoteForm" (ngSubmit)="updateNote()">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Update Note</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input formControlName="title" type="text" placeholder="title" class="form-control mb-3">
+          <textarea formControlName="desc" cols="30" rows="10" placeholder="description"
+            class="form-control"></textarea>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Update</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

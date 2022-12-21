@@ -1,0 +1,35 @@
+
+.navbar
+{
+    background-color: #18171F;
+    box-shadow: 0px 2px 2px  #24232A;
+}
+
+.navbar a
+{
+    color: #A5FFAF !important;
+
+}
+
+.navbar a:hover
+{
+    color: rgb(165, 255, 175) ;
+    opacity: 70%;
+}
+
+
+.navbar-toggler-icon
+{
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' width='30' height='30' viewBox='0 0 30 30'%3e%3cpath stroke='rgb(165, 255, 175)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+}
+
+.navbar-toggler
+{
+    border-color: rgb(165, 255, 175);
+
+}
+
+.wel
+{
+    color: #a5ffaf;
+}

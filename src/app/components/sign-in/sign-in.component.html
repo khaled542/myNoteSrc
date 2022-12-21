@@ -1,0 +1,33 @@
+<div class="container d-flex justify-content-center align-items-center vh-100 ">
+    <div class="w-75 m-auto ">
+        <h3 *ngIf="!isSuccesse" class="text-danger text-center">{{responseMessage}}</h3>
+        <form [formGroup]="signInForm" (ngSubmit)="submitBtn()">
+            <div class="row">
+                <div class="col-md-12">
+                    <label class="">Email</label>
+                    <input type="email" formControlName="email" class="form-control my-2">
+                    <div *ngIf="signInForm.invalid && isSubmitted" class="errors">
+                        <p *ngIf="signInForm.invalid && signInForm.get('email')?.getError('required')" class="text-danger">this field is required</p>
+                        <p *ngIf="signInForm.invalid && signInForm.get('email')?.getError('email')" class="text-danger">email format is not valid</p>
+                    </div>
+                </div>
+
+                <div class="col-md-12 mt-4">
+                    <label class="">Password</label>
+                    <input type="password" formControlName="password" class="form-control my-2">
+                    <div *ngIf="signInForm.invalid && isSubmitted" class="errors">
+                        <p *ngIf="signInForm.invalid && signInForm.get('password')?.getError('required')" class="text-danger">this field is required</p>
+                        <p *ngIf="signInForm.invalid && signInForm.get('password')?.getError('pattern')" class="text-danger">password format is not valid</p>
+                    </div>
+                </div>
+
+                <div class="col-md-12 mt-4">
+                    <button type="submit" class="btn sub-btn w-100">
+                        <span *ngIf="!isLoading">login</span>
+                        <span *ngIf="isLoading">waiting........</span>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
